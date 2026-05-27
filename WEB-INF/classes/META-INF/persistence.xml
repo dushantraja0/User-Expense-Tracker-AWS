@@ -1,0 +1,28 @@
+<persistence xmlns="https://jakarta.ee/xml/ns/persistence"
+             version="3.0">
+
+    <persistence-unit name="UserPU">
+
+        <class>com.example.assignment02.model.User</class>
+        <class>com.example.assignment02.model.Expense</class>
+
+        <properties>
+
+            <property name="jakarta.persistence.jdbc.driver" value="org.postgresql.Driver"/>
+
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:postgresql://database-2.c5c8ya6mou7k.ap-south-1.rds.amazonaws.com:5432/database_2?ssl=true&amp;sslmode=verify-full&amp;sslrootcert=/etc/ssl/certs/global-bundle.pem"/>
+
+
+
+            <property name="jakarta.persistence.jdbc.user" value="postgres"/>
+
+            <property name="jakarta.persistence.jdbc.password" value="admin123"/>
+
+            <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <property name="hibernate.show_sql" value="true"/>
+
+        </properties>
+
+    </persistence-unit>
+</persistence>
