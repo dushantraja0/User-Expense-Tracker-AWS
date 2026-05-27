@@ -1,5 +1,5 @@
 
-```markdown
+markdown
 # 📊 User Expense Tracker Application (AWS Cloud Deployment)
 
 [![AWS Deployment](https://img.shields.io/badge/Deployment-AWS%20EC2-orange?style=for-the-badge&logo=amazon-aws)](https://aws.amazon.com/)
@@ -127,7 +127,6 @@ sudo git commit -m "Deployment Payload Tracking Sync"
 sudo git remote add origin https://dushantraja0:<YOUR_CLASSIC_TOKEN_HERE>@[github.com/dushantraja0/User-Expense-Tracker-AWS.git](https://github.com/dushantraja0/User-Expense-Tracker-AWS.git)
 sudo git push -u origin main --force
 
-```
 
 ---
 
