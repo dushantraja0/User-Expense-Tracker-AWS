@@ -1,8 +1,3 @@
-Raja, yeh lo bilkul solid aur **100% complete enterprise-grade README.md**. Isme har ek cheez code level se lekar infrastructure tak fully written hai, aapko isme se kuch bhi mitaane ya khud se add karne ki zaroorat nahi hai.
-
-Is box ke top-right corner se copy button dabao, GitHub par file bana kar direct paste kar do!
-
----
 
 ```markdown
 # 📊 User Expense Tracker Application (AWS Cloud Deployment)
