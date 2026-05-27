@@ -1,137 +1,111 @@
+# 📊 User Expense Tracker Application (Multi-Tier AWS & PostgreSQL Deployment)
 
-markdown
-# 📊 User Expense Tracker Application (AWS Cloud Deployment)
-
-[![AWS Deployment](https://img.shields.io/badge/Deployment-AWS%20EC2-orange?style=for-the-badge&logo=amazon-aws)](https://aws.amazon.com/)
+[![AWS Infrastructure](https://img.shields.io/badge/Infrastructure-AWS%20EC2%20%26%20RDS-orange?style=for-the-badge&logo=amazon-aws)](https://aws.amazon.com/)
+[![Database Tier](https://img.shields.io/badge/Database-PostgreSQL-blue?style=for-the-badge&logo=postgresql)](https://www.postgresql.org/)
 [![Web Server](https://img.shields.io/badge/Server-Apache%20Tomcat%2010-red?style=for-the-badge&logo=apache-tomcat)](https://tomcat.apache.org/)
 [![Version Control](https://img.shields.io/badge/VCS-Git%20%26%20GitHub-black?style=for-the-badge&logo=github)](https://github.com/)
 
-An enterprise-ready Full-Stack Web Application dynamically hosted on an active AWS EC2 cloud infrastructure instance. This system showcases rigorous cloud security configurations, web servlet container hosting, continuous workspace synchronization, automated network deployment flows, and POSIX file-system management within a multi-user Linux environment.
-
-The system handles real-time personal finance calculations, expense categorization, and metrics parsing, maintaining clean runtime data separation across individual user sessions while operating natively inside a live Apache Tomcat container.
+An enterprise-ready Multi-Tier Full-Stack Web Application dynamically hosted on Amazon Web Services (AWS). This architecture showcases decoupling strategies by isolating the frontend web compute layer from the persistent relational database layer using AWS EC2, AWS RDS PostgreSQL, secure network group boundaries, and automated server-side workspace synchronization.
 
 ---
 
-## 🏗️ Architectural Overview
+## 🏗️ Architectural Topology & Component Mapping
 
-The application architecture maps an enterprise dynamic lifecycle pattern where dynamic servlet containers interact with Linux file systems under hardened boundary controls:
+The application enforces strict resource segregation to minimize cross-layer dependencies and maximize data tier protection:
 
 ```text
-  [ User Client / Browser ]
-             │
-             ▼
-    [ AWS EC2 Instance ] ──► Security Groups (Port 8080 Open)
-             │
-             ▼
- [ Apache Tomcat 10 Linux Container ]
-             │
-             ▼
-  [ Dynamic Web Services ] ──► (index.jsp / dashboard.jsp)
-             │
-             ▼
-[ Deployment Root: /var/lib/tomcat10/webapps/ROOT ] (Hardened Boundaries)
+  [ Client Web Browser Requests ]
+                 │
+                 ▼  (Inbound HTTP Traffic via Port 8080)
+  ┌────────────────────────────────────────────────────────┐
+  │  AWS EC2 Cloud Compute Node (Ubuntu Server OS)         │
+  │  ├── Apache Tomcat 10 Dynamic Servlet Container        │
+  │  └── Hosted Logic Modules (index.jsp / dashboard.jsp)  │
+  └──────────────────────────────┬─────────────────────────
+                                 │
+                                 ▼  (Secure Private Inbound JDBC Port 5432)
+  ┌────────────────────────────────────────────────────────┐
+  │  AWS RDS Managed DB Instance (PostgreSQL Engine)       │
+  │  └── Relational User Schemas & Transactional Ledgers   │
+  └────────────────────────────────────────────────────────┘
+🛠️ Core Technology Stack
+Compute Tier Hosting: AWS EC2 Node running a headless Linux Ubuntu Server.
 
-```
+Managed Database Tier: AWS RDS Instance powered by the PostgreSQL Relational Engine.
 
-### 🛠️ Core Technology Stack
+Web Server & Servlet Middleware: Apache Tomcat 10 Container.
 
-* **Infrastructure Hosting:** Amazon Web Services (AWS) EC2 Cloud Compute Node.
-* **Operating System Server Base:** Linux Ubuntu Server Edition.
-* **Servlet Container Engines:** Apache Tomcat 10 Web Application Architecture.
-* **Backend Framework Logic:** Java Server Pages (JSP), Servlets, and Java Enterprise Web Architecture blueprints.
-* **Frontend Interface:** Custom UI styling integrated dynamically with modern viewport layouts.
-* **Version Control Automation:** Git Enterprise Source Control utilizing Encrypted Classic Token Authentication.
+Backend Framework Logic: Java Server Pages (JSP), Java Servlets, and PostgreSQL JDBC Driver integrations.
 
----
+Version Control Pipeline: Hardened Git Workflow utilizing Encrypted Classic Token Authentication helpers.
 
-## ⚡ Key Application & System Engineering Features
+⚡ Key Infrastructure & System Engineering Features
+1. Decoupled Relational Persistence (AWS RDS)
+Configured enterprise relational structures inside a managed PostgreSQL database, fully isolated within custom network loops.
 
-### 1. Dynamic Expense Computation Engine
+Connectivity is locked down via inbound Security Group rules allowing query interactions exclusively from the web server's internal EC2 IP over port 5432.
 
-* Fully operational backend logic to process real-time additions, subtractions, totals, and structural tracking of operational costs.
-* State management preservation across runtime interactions via Tomcat Session Tracking HTTP APIs.
-* Dynamic responsive inputs for adding individual category expenses with automatic dynamic indexing.
+Real-time accounting logic to securely process, categorize, and sum transaction datasets matching specific user login tokens.
 
-### 2. Multi-User Security Isolation (POSIX Bound)
+2. POSIX Directory Privilege Hardening
+Enforced rigid user directory boundaries over the server deployment context root (/var/lib/tomcat10/webapps/ROOT) to protect production web assets against host-level file system manipulation.
 
-* Configured advanced security mapping strategies to allow secure administrative interactions over specific Tomcat file boundaries without breaching underlying system restrictions.
-* Preserved file system permissions to guarantee that web requests cannot execute arbitrary host-level OS tasks.
+3. Automated Configuration Synchronization
+Bypassed persistent authorization caching drops during high-volume server testing by embedding explicitly-scoped Classic Personal Access Tokens (ghp_) within inline terminal links.
 
-### 3. Dynamic State Synchronization
+Automated upstream force-update pipelines to map local configuration variations directly from the live terminal context smoothly without downtime.
 
-* Implemented advanced upstream overriding mechanisms (`git push --force`) to achieve structural parity between target server repositories and remote profiles instantly.
-* Bypassed persistent authorization caching blocks by moving deployment targets into inline dynamic authentication blocks via Classic Personal Access Tokens (`ghp_`).
+📂 Repository Blueprint
+The repository structure follows standard production web application deployment requirements:
 
----
-
-## 📂 Repository Blueprint
-
-The structure follows standard production webapp constraints directly synchronized from the cloud instance's functional tracking system:
-
-```text
-├── src/                    # Enterprise Java Backend Logic & Source Classes
-│   └── com/                # Source packages for processing application workflows
+Plaintext
+├── src/                    # Enterprise Java Backend Logic & DB Access Drivers
+│   └── com/                # Source packages for processing user workflows
 ├── WEB-INF/                # Server Context, Web Descriptors & Secure Resources
 │   ├── web.xml             # Deployment Descriptor mapping Servlet allocations
-│   └── lib/                # Shared dependency libraries for runtime execution
+│   └── lib/                # Shared dependency libraries (PostgreSQL JDBC Driver)
 ├── index.jsp               # Central Portal Gatekeeper & Authentication Layout
 ├── dashboard.jsp           # Core Analytical View & Expense Processing Panel
 ├── .gitignore              # Production Workspace/Dependency Filter Profiles
-└── README.md               # Advanced Engineering & Infrastructure Blueprint
+└── README.md               # Advanced Architecture & Infrastructure Documentation
+🔧 Production Troubleshooting Ledger (Lessons Learned)
+During the cloud deployment phase, critical infrastructure hurdles were addressed and resolved directly within the server shell:
 
-```
+1. Relational Connection Interceptions (EC2 to RDS PostgreSQL)
+The Issue: Early initialization loops threw driver context faults and communication breaks when bridging JSP files with the PostgreSQL tier, caused by rigid security group boundaries.
 
----
+The Resolution: Configured incoming rules over port 5432 bound precisely to the EC2 interface traffic and streamlined the PostgreSQL JDBC connection path strings.
 
-## 🔧 Production Troubleshooting Ledger (Lessons Learned)
+2. Multi-User Server Directory Lockouts (Git Ownership Bypass)
+The Issue: Initializing version control trees within standard system application directories triggered an operating system permission check conflict (fatal: detected dubious ownership in repository).
 
-During the live cloud migration phase, two major system design hurdles were intercepted and engineered to a resolution:
+The Resolution: Injected explicit location exemptions into the global architecture Git configuration matrix to declare the active workspace sound:
 
-### 1. Dubious Ownership Restrictions (Git Security Bypass)
-
-* **The Issue:** Running Git operations as the base administrative user within standard application directories (`/var/lib/tomcat10/webapps/ROOT`) triggered immediate file-system isolation blocks due to unexpected security ownership mismatches (`fatal: detected dubious ownership in repository`).
-* **The Resolution:** Applied systemic variable exemptions directly to the global infrastructure Git system schema to declare the working root directory structurally sound:
-```bash
+Bash
 sudo git config --global --add safe.directory /var/lib/tomcat10/webapps/ROOT
+3. Dynamic Write Permission Dropouts (HTTP 403 Forbidden)
+The Issue: Modern fine-grained token architectures generated accidental access blocks mid-stream due to strict remote validation refresh cycles.
 
-```
+The Resolution: Shifted transmission methods onto an explicitly-scoped Classic Personal Access Token Blueprint to enable unbroken transport pipelines directly from the terminal.
 
+🚀 Live Server Deployment Workflow
+To reproduce or manage the live state from the server shell workspace context, execute the following timeline:
 
-
-### 2. Fine-Grained Token Permission Incompatibilities (HTTP 403)
-
-* **The Issue:** Standard fine-grained token mappings dropped structural write scopes during high-volume server mutations, generating unexpected `HTTP 403: Forbidden` access errors due to rigid API cache refresh cycles.
-* **The Resolution:** Migrated target synchronization methods to an explicit, isolated **Classic Personal Access Token Blueprint** mapped precisely with full `repo` workflow control privileges.
-
----
-
-## 🚀 Live Server Execution Strategy
-
-To spin up, trace, or re-verify structural sync parameters over the target platform environment from scratch, execute the following workflow directly within the server console:
-
-```bash
-# Move straight to the active webapps context directory
+Bash
+# Transition straight to the operational Tomcat deployment folder
 cd /var/lib/tomcat10/webapps/ROOT
 
 # Initialize local server tracking boundaries
 sudo git init
 
-# Clear existing workspace conflicts
+# Register repository workspace exemptions
 sudo git config --global --add safe.directory /var/lib/tomcat10/webapps/ROOT
 
-# Stage changes cleanly and initialize system commits
+# Stage active assets and initialize system commits
 sudo git add .
 sudo git commit -m "Deployment Payload Tracking Sync"
 
-# Force push directly upstream using the Classic Personal Access Token framework
-sudo git remote add origin https://dushantraja0:<YOUR_CLASSIC_TOKEN_HERE>@[github.com/dushantraja0/User-Expense-Tracker-AWS.git](https://github.com/dushantraja0/User-Expense-Tracker-AWS.git)
+# Secure transport mapping utilizing embedded tokens for remote push validation
+sudo git remote add origin [https://github.com/dushantraja0/User-Expense-Tracker-AWS.git](https://github.com/dushantraja0/User-Expense-Tracker-AWS.git)
 sudo git push -u origin main --force
-
-
----
-
-*Maintained and Architected for Production Cloud Environments by [Dushant Raja](https://github.com/dushantraja0).*
-
-```
-
-```
+Maintained and Architected for Multi-Tier Cloud Environments by Dushant Raja.
